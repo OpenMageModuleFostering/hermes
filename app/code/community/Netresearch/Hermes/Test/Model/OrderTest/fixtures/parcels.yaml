@@ -1,0 +1,43 @@
+tables:
+  sales/order:
+   - entity_id: 31
+     increment_id: 100000055
+     shipping_address_id: 45
+     base_grand_total: 119.00
+     grand_total: 119.00
+     currency: EUR
+     customer_gender: 1
+     shipping_method: 'flatrate_flatrate'
+     
+
+  sales/shipment:
+   - entity_id: 2
+     increment_id: 1000000001
+     order_id: 31
+     shipping_address_id: 45
+
+
+  hermes/parcel:
+   - id: 1
+     shipment_id: 2
+     shipping_method:              'flatrate_flatrate'
+     parcel_class:                 'M'
+     includeCashOnDelivery:        false
+
+
+  sales/order_address:
+   - entity_id:    45
+     parent_id:    31
+     address_type: 'shipping'
+     firstname:    'Hubertus'
+     postcode:     '04229'
+     lastname:     'Fürstenberg'
+     street:       'An der Tabaksmühle 3a'
+     city:         'Leipzig'
+     email:        'hubertus.von.fuerstenberg@trash-mail.com'
+     country_id:   'DE'
+     prefix:       'Prof. Dr.'
+     middlename:   'von'
+     suffix:       'MdL'
+     company:      'Verein zur Abschaffung der Beseitigung'
+

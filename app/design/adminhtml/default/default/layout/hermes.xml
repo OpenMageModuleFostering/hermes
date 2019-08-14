@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Layout
+ * @package   Netresearch_Hermes
+ * @author    André Herrn <andre.herrn@netresearch.de>
+ * @copyright Copyright (c) 2010 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+-->
+<layout>
+    <adminhtml_sales_order_index>
+        <reference name="head">
+            <action method="addCss"><name>hermes.css</name></action>
+        </reference>
+    </adminhtml_sales_order_index>
+    <adminhtml_sales_order_shipment_view>
+        <reference name="head">
+            <action method="addCss"><name>hermes.css</name></action>
+            <action method="addJs"><script>netresearch/hermes/adminhtml/hermes.js</script></action>
+        </reference>
+        <reference name="form">
+            <block type="adminhtml/sales_order_comments_view"  name="order_comments" template="hermes/sales/order/shipment/view/comments.phtml">
+                <action method="setParentType"><type>shipment</type></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_shipment_view>
+    <adminhtml_sales_order_shipment_new>
+        <reference name="head">
+            <action method="addCss"><name>hermes.css</name></action>
+            <action method="addJs"><script>netresearch/hermes/adminhtml/hermes.js</script></action>
+        </reference>
+    </adminhtml_sales_order_shipment_new>
+    <adminhtml_sales_shipment_index>
+        <reference name="head">
+            <action method="addCss"><name>hermes.css</name></action>
+        </reference>
+    </adminhtml_sales_shipment_index>
+    <adminhtml_parcel_edit>
+        <reference name="content">
+            <block type="hermes/adminhtml_sales_parcel_edit" name="parcel_edit"/>
+        </reference>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="hermes"><title>Edit Hermes Parcel Data</title></action>
+        </reference>
+    </adminhtml_parcel_edit>
+</layout>

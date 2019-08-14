@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category  Config
+ * @package   Netresearch_Hermes
+ * @author    Christoph Aßmann <christoph.assmann@netresearch.de>
+ * @copyright Copyright (c) 2012 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <sections>
+        <hermes translate="label" module="hermes">
+            <label>Hermes</label>
+            <tab>sales</tab>
+            <sort_order>335</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <support translate="label">
+                    <label>Information</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>hermes/adminhtml_system_config_notice</frontend_model>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </support>
+                <global translate="label">
+                    <label>List of Products</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>hermes/adminhtml_system_config_products</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                </global>
+                <general translate="label">
+                    <label>Basic Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <testmode translate="label">
+                            <label>Test mode</label>
+                            <comment><![CDATA[By choosing 'yes' the sandbox mode will be activated. Please notice, that all generated parcels will be ignored by Hermes.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </testmode>
+                        <logging_enabled translate="label comment">
+                            <label>Log requests and responses of the web service.</label>
+                            <comment><![CDATA[Please ensure that the Magento-Log is activated]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </logging_enabled>
+                    </fields>
+                </general>
+
+                <account translate="label" module="hermes">
+                    <label>Account</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>21</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <username>
+                            <label>Username of the client</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>required-entry</validate>
+                        </username>
+                        <password>
+                            <label>Password of the client</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>800</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>required-entry</validate>
+                        </password>
+                    </fields>
+                </account>
+
+                <shipment_options translate="label" module="hermes">
+                    <label>Shipment Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <disabled_shipping_methods translate="label">
+                            <label>Disabled shipping methods</label>
+                            <comment>Please select shipping methods which should not be used for Hermes shipping.</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Netresearch_Hermes_Model_System_Config_Source_Shipping_Methods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shipping_methods>
+                        <cod_payment_methods translate="label">
+                            <label>Payment methods allowed for cash on delivery</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Netresearch_Hermes_Model_System_Config_Source_Payment_Methods</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cod_payment_methods>
+                        <hermes_mail translate="label">
+                            <label>Let Hermes send an email containing the tracking link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </hermes_mail>
+                    </fields>
+                </shipment_options>
+
+                <shipment_label_options translate="shipment label" module="hermes">
+                    <label>Shipment Label Options</label>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <shipment_label_option_pdf translate="shipment label placement">
+                            <label>shipment label placement</label>
+                            <comment>Please select placement for shipment label.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Netresearch_Hermes_Model_System_Config_Source_Shipping_LabelPlacements</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </shipment_label_option_pdf>
+                    </fields>
+                </shipment_label_options>
+
+                <email_options translate="email options" module="hermes">
+                    <label>e-mail options</label>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <send_email_automatic_mode translate="label">
+                            <label>send shipping e-mail immediately if automatic mode is used</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </send_email_automatic_mode>
+                        <send_email_tracking_link translate="label">
+                            <label>send shipping e-mail if tracking link is available</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>510</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </send_email_tracking_link>
+                    </fields>
+                </email_options>
+
+                <autocreate translate="label" module="hermes">
+                    <label>Automatic shipment creation</label>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enabled>
+                        <order_status translate="label">
+                            <label>Allowed order status codes for automatic shipment</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Mage_Adminhtml_Model_System_Config_Source_Order_Status</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <payment_methods translate="label">
+                            <label>Payment methods allowed for automatic shipment</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Netresearch_Hermes_Model_System_Config_Source_Payment_Methods</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </payment_methods>
+                    </fields>
+                </autocreate>
+            </groups>
+        </hermes>
+    </sections>
+</config>

@@ -1,0 +1,5 @@
+DEU:
+  product_classes: ["", 'XS', 'S', 'M', 'L', 'XL']
+
+GBR:
+  product_classes: ["", 'XS', 'S', 'M', 'L']

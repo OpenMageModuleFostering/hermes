@@ -1,0 +1,5 @@
+allowed_cod_countries:
+  country_codes: ['DEU']
+
+not_allowed_cod_countries:
+  country_codes: ['USA', 'MEX']

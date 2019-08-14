@@ -1,0 +1,13 @@
+tables:
+  sales/order:
+   - entity_id: 1
+     increment_id: 1000000001
+     billing_address_id: 1
+   - entity_id: 2
+   - entity_id: 3
+
+  sales/order_address:
+   - entity_id: 42
+     parent_id: 1
+     address_type: 'billing'
+     firstname: 'Hubertus'

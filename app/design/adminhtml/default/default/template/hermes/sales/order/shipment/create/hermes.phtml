@@ -1,0 +1,81 @@
+<?php
+if (false === Mage::helper('hermes/order')->isPartialShipment($this->getMageShipment())): ?>
+    <div id="hermes-form" class="field-row grid">
+        <?php if (true === $this->isValidHermesShipment()): ?>
+            <fieldset id="hermes-selector">
+                <?php
+                $shipWithHermes = $this->isAllowedShippingMethod();
+                $isShippedAsCod = $this->getValidateOrderHelper()->isShippedAsCod();
+                ?>
+                <legend><?php echo $this->__('Ship with Hermes?')?></legend>
+                <?php if (true === $isShippedAsCod): ?>
+                <div class="notice-msg" style="padding-left:35px;">
+                    <small><?php echo $this->__('Please note');?>:<br /><?php echo $this->__('In case of cash on delivery, the order can not be shipped partially.'); ?></small>
+                </div>
+                <?php endif; ?>
+                <input type="radio" name="ship_with_hermes" id="ship_with_hermes_yes" value="1" checked="checked" onchange="handleHermesFormDisplay(this);" />
+                <label for="ship_with_hermes_yes"><?php echo $this->__('Yes')?></label>
+                <br />
+                <input type="radio" name="ship_with_hermes" id="ship_with_hermes_no" value="0" onchange="handleHermesFormDisplay(this);" <?php if ($shipWithHermes === false):?> checked="checked"<?php endif;?> />
+                <label for="ship_with_hermes_no"><?php echo $this->__('No')?></label>
+            </fieldset>
+            <div id="inner-hermes-form" <?php if ($shipWithHermes === false):?> style="display:none;"<?php endif;?>>
+                <table class="data" cellspacing="0" cellpadding="0">
+                    <col width="25%" />
+                    <col width="75%" />
+                    <tbody>
+                        <?php if ($this->isTieredPriceMerchand()): ?>
+                            <tr class="odd">
+                                <td>
+                                <label for="parcel_class"><?php echo $this->__('Please select a product class')?></label>
+                                </td>
+                                <td>
+                                    <?php
+                                            $parcelClasses = $this->getParcelClassesForCountry();
+                                            if (count($parcelClasses) > 0):
+                                    ?>
+                                                <select name="parcel_class" id="parcel_class">
+                                                    <?php foreach ($parcelClasses as $parcelClassValue => $parcelClassLabel): ?>
+                                                        <option value="<?php echo $parcelClassValue; ?>"><?php echo $this->escapeHtml($parcelClassLabel); ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                        <tr class="even">
+                            <td><?php print $this->__('COD shipment') ?></td>
+                            <td>
+                                <?php print ($isShippedAsCod) ? $this->__('Yes') : $this->__('No'); ?>
+                            </td>
+                        </tr>
+                        <? if ($isShippedAsCod): ?>
+                        <tr class="odd">
+                            <td><?php print $this->__('Grand Total') ?></td>
+                            <td>
+                                <?php print $this->helper('checkout')
+                                                ->formatPrice($this->getValidateOrderHelper()
+                                                        ->getOrder()
+                                                        ->getGrandTotal()); ?>
+                            </td>
+                        </tr>
+                        <? endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <?php foreach ($this->getValidationErrors() as $error_message): ?>
+                <div class="notice-msg" style="padding-left:35px;">
+                    <small><?php echo $this->__('Please note');?>:<br /><?php echo $error_message; ?></small>
+                </div>
+            <?php endforeach; ?>
+        <?php endif;?>
+    </div>
+<?php else: ?>
+    <?php
+    if (0 < sizeof($this->getValidateOrderHelper()->getOrder()->getShipmentsCollection())): ?>
+        <div class="notice-msg" style="padding-left:35px;">
+            <small><?php echo $this->__('Please note');?>:<br /><?php echo $this->__('This order can not be shipped with Hermes, because it is partially shipped and cash on delivery order.'); ?></small>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

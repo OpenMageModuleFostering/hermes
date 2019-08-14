@@ -1,0 +1,108 @@
+<?php /* @var $this Netresearch_Hermes_Block_Adminhtml_System_Config_Products */ ?>
+<tr><td><span>
+    <?php echo $this->__('Last Update') ?>:
+    <?php echo $this->formatDate($this->getListOfProductsDated(), Mage_Core_Model_Locale::FORMAT_TYPE_FULL, true); ?>
+</span></td></tr></tbody></table>
+<style>
+.hermes_product_list tr.even {
+    background: #ffffff;
+    border: 0px;
+}
+</style>
+<?php if ($this->getListOfProductsProducts()): ?>
+    <table class="switcher" width="100%" cellspacing="0">
+        <tbody class="hermes_product_list">
+            <?php $rowClass = 'odd'; ?>
+            <?php foreach ($this->getListOfProductsProducts() as $countryCode => $productClasses): ?>
+                <?php $currentCount = count($productClasses['product_classes']); ?>
+                <?php if (false == isset($parcelClasses) || count($parcelClasses) < $currentCount): ?>
+                    <?php $parcelClasses = array_keys($productClasses['product_classes']); ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <tr>
+                <td colspan="2">&nbsp;</td>
+                <?php foreach ($parcelClasses as $parcelClass): ?>
+                    <th><?php echo $parcelClass ?></th>
+                <?php endforeach; ?>
+                <td>&nbsp;</td>
+            </tr>
+            <?php foreach ($this->getListOfProductsProducts() as $countryCode => $productClasses): ?>
+                <?php $rowClass = $rowClass=='odd' ? 'even' : 'odd'; ?>
+                <?php $detailsAction = "$$('.hermes_product_details_$countryCode').invoke('toggle');$('hermes_product_details_link_$countryCode').toggle();return false;"; ?>
+                <tr class="country_products <?php echo $rowClass; ?> pointer" onclick="<?php echo $detailsAction ?>">
+                    <th><?php print($this->getCountryName($countryCode)); ?></th>
+                    <th><?php echo $this->__('Net Price'); ?></th>
+                    <?php foreach ($parcelClasses as $parcelClass): ?>
+                        <?php $currentProductClasses = $productClasses['product_classes']; ?>
+                        <td>
+                            <?php if (array_key_exists($parcelClass, $currentProductClasses)): ?>
+                                <?php echo number_format((int) $currentProductClasses[$parcelClass]['netPriceEurcent']/100, 2) ?> €
+                            <?php else: ?>
+                                -
+                            <?php endif; ?>
+                        </td>
+                    <?php endforeach; ?>
+                    <td><a id="hermes_product_details_link_<?php echo $countryCode ?>" href="#">Details</a></td>
+                </tr>
+                <tr class="hermes_product_details_<?php echo $countryCode ?> <?php echo $rowClass ?> pointer" onclick="<?php echo $detailsAction ?>" style="display:none">
+                    <td>&nbsp;</td>
+                    <th class="product_field"><?php print($this->__('Weight (min, max)')) ?>:</th>
+                    <?php foreach ($parcelClasses as $parcelClass): ?>
+                        <?php $currentProductClasses = $productClasses['product_classes']; ?>
+                        <td>
+                            <?php if (array_key_exists($parcelClass, $currentProductClasses)): ?>
+                                <?php echo $currentProductClasses[$parcelClass]['weightMinKg'] ?> kg -
+                                <?php echo $currentProductClasses[$parcelClass]['weigthMaxKg'] ?> kg
+                            <?php else: ?>
+                                -
+                            <?php endif; ?>
+                        </td>
+                    <?php endforeach; ?>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr class="hermes_product_details_<?php echo $countryCode ?> <?php echo $rowClass ?> pointer" onclick="<?php echo $detailsAction ?>" style="display:none">
+                    <td>&nbsp;</td>
+                    <th class="product_field"><?php print($this->__('Edges')) ?>:</th>
+                    <?php foreach ($parcelClasses as $parcelClass): ?>
+                        <?php $currentProductClasses = $productClasses['product_classes']; ?>
+                        <td>
+                            <?php if (array_key_exists($parcelClass, $currentProductClasses)): ?>
+                                <?php echo $currentProductClasses[$parcelClass]['shortestPlusLongestEdgeCmMin'] ?> cm,
+                                <?php echo $currentProductClasses[$parcelClass]['shortestPlusLongestEdgeCmMax'] ?>
+                                cm<?php if ($currentProductClasses[$parcelClass]['thridEdgeCmMax']): ?>,
+                                    <?php echo $currentProductClasses[$parcelClass]['thridEdgeCmMax']; ?> cm
+                                <?php endif; ?>
+                            <?php else: ?>
+                                -
+                            <?php endif; ?>
+                        </td>
+                    <?php endforeach; ?>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr class="hermes_product_details_<?php echo $countryCode ?> <?php echo $rowClass ?>" style="display:none">
+                    <td>&nbsp;</td>
+                    <th class="product_field"><?php print($this->__('Exclusions')) ?>:</th>
+                    <?php foreach ($parcelClasses as $parcelClass): ?>
+                        <?php $currentProductClasses = $productClasses['product_classes']; ?>
+                        <td>
+                            <?php if (array_key_exists($parcelClass, $currentProductClasses)): ?>
+                                <?php if (array_key_exists('exclusions', $currentProductClasses[$parcelClass]) && 0<strlen($currentProductClasses[$parcelClass]['exclusions'])): ?>
+                                    <?php echo $currentProductClasses[$parcelClass]['exclusions'] ?>
+                                <?php else: ?>
+                                    -
+                                <?php endif; ?>
+                            <?php else: ?>
+                                -
+                            <?php endif; ?>
+                        </td>
+                    <?php endforeach; ?>
+                    <td>&nbsp;</td>
+                </tr>
+            <?php endforeach; ?>
+<?php 
+/* already included by parent template:
+        </tbody>
+    </table>
+ */
+?>
+<?php endif; ?>

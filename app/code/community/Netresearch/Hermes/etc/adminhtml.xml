@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category  Acl
+ * @package   Netresearch_Hermes
+ * @author    Christoph Aßmann <christoph.assmann@netresearch.de>
+ * @copyright Copyright (c) 2012 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <shipment>
+                                <children>
+                                    <transmit_parcels translate="title">
+                                        <title>Transmit Parcel Data to Hermes</title>
+                                    </transmit_parcels>
+                                    <create_hermes_shipments translate="title">
+                                        <title>Create shipment(s) for Hermes</title>
+                                    </create_hermes_shipments>
+                                </children>
+                            </shipment>
+                        </children>
+                    </sales>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <hermes>
+                                        <title>Hermes Settings</title>
+                                    </hermes>
+                                </children>
+                            </config>
+                            <hermes translate="title" module="hermes">
+                                <title>Hermes</title>
+                                <sort_order>20</sort_order>
+                                <children>
+                                    <update_list_of_products translate="title">
+                                        <title>Update List of Hermes Products</title>
+                                    </update_list_of_products>
+                                    <configuration translate="title">
+                                        <title>Settings</title>
+                                    </configuration>
+                                </children>
+                            </hermes>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,155 @@
+<?php /** @var $this Netresearch_Hermes_Block_Adminhtml_Sales_Order_Shipment_Create_Hermes */ ?>
+<div id="hermes-form" class="field-row grid">
+    <?php if (!is_null($this->getParcel()->getId())): ?>
+        <?php
+            $parcel = $this->getParcel();
+            $isShippedAsCod = $this->getValidateOrderHelper()
+                ->setOrder($parcel->getShipment()->getOrder())
+                ->isShippedAsCod();
+        ?>
+        <div id="inner-hermes-form">
+            <table class="data" cellspacing="0" cellpadding="0">
+                <col width="34%" />
+                <col width="33%" />
+                <col width="33%" />
+                <?php $line=0; ?>
+                <?php $rowClass = array('odd', 'even'); ?>
+                <tbody>
+                    <tr class="<?php echo $rowClass[$line%2]; ?>">
+                        <?php $line++ ?>
+                        <td><?php echo $this->__('COD shipment') ?></td>
+                        <td colspan="2">
+                            <?php echo ($isShippedAsCod) ? $this->__('Yes') : $this->__('No'); ?>
+                        </td>
+                    </tr>
+                    <?php if ($isShippedAsCod): ?>
+                        <tr class="<?php echo $rowClass[$line%2]; ?>">
+                            <?php $line++ ?>
+                            <td><?php echo $this->__('Grand Total') ?></td>
+                            <td colspan="2">
+                                <?php echo $this->helper('checkout')->formatPrice(
+                                    $this->getValidateOrderHelper()->getOrder()->getGrandTotal()
+                                ); ?>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($this->isTieredPriceMerchand() && 0 < strlen(trim($parcel->getParcelClass()))): ?>
+                        <tr class="<?php echo $rowClass[$line%2]; ?>">
+                            <?php $line++ ?>
+                            <td><?php echo $this->__('Parcel class') ?></td>
+                            <td colspan="2"><?php echo $this->escapeHtml($parcel->getParcelClass()); ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($parcel->isProcessed()): ?>
+                        <tr class="<?php echo $rowClass[$line%2]; ?>">
+                            <?php $line++ ?>
+                            <td><?php echo $this->__('Hermes order no') ?></td>
+                            <td colspan="2"><?php echo $this->escapeHtml($parcel->getHermesOrderNo()); ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <tr class="<?php echo $rowClass[$line%2]; ?>">
+                        <?php $line++ ?>
+                        <td><?php echo $this->__('Parcel Data')?></td>
+                        <td>
+                            <dl class="parcel-data">
+                                <dt><em><?php echo $this->__('Address'); ?></em></dt>
+                                <dd>
+                                    <?php echo $this->escapeHtml($parcel->getReceiverFirstname()); ?>
+                                    <?php echo $this->escapeHtml($parcel->getReceiverLastname()); ?><br />
+                                    <?php if (0 < strlen($parcel->getReceiverAddressAdd())): ?>
+                                        <?php echo $this->escapeHtml($parcel->getReceiverAddressAdd()); ?><br />
+                                    <?php endif; ?>
+                                    <?php echo $this->escapeHtml($parcel->getReceiverStreet()); ?>
+                                    <?php echo $this->escapeHtml($parcel->getReceiverHouseNumber()); ?><br />
+                                    <?php echo $this->escapeHtml($parcel->getReceiverPostCode()); ?>
+                                    <?php echo $this->escapeHtml($parcel->getReceiverCity()); ?><br />
+                                    <?php echo $this->escapeHtml($parcel->getReceiverCountryCode()); ?><br />
+                                </dd>
+                            </dl>
+                        </td>
+                        <td>
+                            <dl class="parcel-data">
+                                <?php if (0 < strlen($parcel->getReceiverEmail())): ?>
+                                    <dt><em><?php echo $this->__('Email'); ?></em></dt>
+                                    <dd><?php echo $this->escapeHtml($parcel->getReceiverEmail()); ?><br /></dd>
+                                <?php endif; ?>
+                                <?php if (0 < strlen($parcel->getReceiverTelephoneNumber())): ?>
+                                    <dt><em><?php echo $this->__('Telephone'); ?></em></dt>
+                                    <dd><?php echo $this->escapeHtml($parcel->getReceiverTelephoneNumber()); ?></dd>
+                                <?php endif; ?>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr class="<?php echo $rowClass[$line%2]; ?>">
+                        <?php $line++ ?>
+                        <td><strong><?php echo $this->__('Status')?></strong></td>
+                        <td colspan="2"><strong><?php echo $this->escapeHtml($parcel->getStatusText()); ?></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+            <?php if ($parcel->isProcessed() || $parcel->getHermesOrderNo()): ?>
+
+                <?php $location = $this->getUrl('adminhtml/parcel/getLabel', array(
+                        'parcelId' => $parcel->getId(),
+                        'format' => Netresearch_Hermes_Model_System_Config_Source_Shipping_LabelFileFormatOptions::PDF
+                      ));
+                     $labelPlacementOptionsModel = new Netresearch_Hermes_Model_System_Config_Source_Shipping_LabelPlacements();
+                     $defaultPosition = Mage::getModel('hermes/config')->getPdfLabelPosition();
+                ?>
+                <form action="<?php echo $location; ?>" method="get" style="display:none;float:right;margin-top:2px" id="hermes_pdf_form">
+                    <div>
+                        <label for="labelPosition" style="margin-top: 2px; text-align: right; width: 400px;">
+                            <?php echo $this->__('label position'); ?>:&nbsp;
+                        </label>
+                        <select name="labelPosition" id="labelPosition">
+                            <?php foreach($labelPlacementOptionsModel->toOptionArray() as $option): ?>
+                                <?php $selected = ($option['value'] == $defaultPosition) ? ' selected="selected"' : '' ?>
+                                <option value="<?php echo $option['value']; ?>"<?php echo $selected ?>>
+                                    <?php echo $this->escapeHtml($this->__($option['label'])); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <button id="hermes_pdf" type="button" class="scalable save" onclick="$('hermes_pdf_form').submit();$('hermes_pdf_form').hide();$('hermes_parcel_buttons').show()">
+                            <span><?php echo $this->__('Print'); ?></span>
+                        </button>
+                        <button id="hermes_pdf" type="button" class="scalable cancel" onclick="$('hermes_pdf_form').hide();$('hermes_parcel_buttons').show()">
+                            <span><?php echo $this->__('Cancel'); ?></span>
+                        </button>
+                    </div>
+                </form>
+
+            <?php endif; ?>
+
+       <p class="form-buttons" id="hermes_parcel_buttons">
+            <?php if ($parcel->isProcessed() || $parcel->getHermesOrderNo()): ?>
+                <button id="hermes_pdf" type="button" class="scalable save" onclick="$('hermes_pdf_form').show();$('hermes_parcel_buttons').hide()">
+                    <span><?php echo $this->__('Print'); ?></span>
+                </button>
+            <?php endif; ?>
+            <?php if (false == $parcel->isClosed()): ?>
+                <?php if ($parcel->getHermesOrderNo() xor $parcel->isQueued()): ?>
+                    <?php $location = $this->getUrl('adminhtml/parcel/cancel', array('parcelId' => $parcel->getId())); ?>
+                    <button id="cancel_shipment" type="button" class="scalable cancel" onclick="if (confirm('<?php echo $this->__('Do you really want to cancel that Hermes parcel?') ?>')) setLocation('<?php echo $location ?>')">
+                        <span><?php echo $this->__('Cancel shipment') ?></span>
+                    </button>
+                <?php endif; ?>
+
+                <?php if ($parcel->canBeResumed() && false === $parcel->isProcessed()): ?>
+                    <?php $location = $this->getUrl('adminhtml/parcel/repeatTransmission', array('parcelId' => $parcel->getId())); ?>
+                    <button id="resume_shipment" type="button" class="scalable save" onclick="setLocation('<?php echo $location ?>')" style="">
+                        <span><?php echo $this->__('Resume shipment') ?></span>
+                    </button>
+                <?php endif; ?>
+
+                <?php $location = $this->getUrl('adminhtml/parcel/edit', array('id' => $this->getParcel()->getId())); ?>
+                <button id="edit_shipment" type="button" class="scalable save"
+                        onclick="setLocation('<?php echo $location ?>')" style="">
+                    <span><?php echo $this->__('Edit') ?></span>
+                </button>
+            <?php endif; ?>
+        </p>
+    <?php endif; ?>
+</div>

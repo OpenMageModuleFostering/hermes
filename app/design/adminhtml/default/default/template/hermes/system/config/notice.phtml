@@ -1,0 +1,45 @@
+<table cellspacing="0" class="switcher" width="100%" class="form-list">
+    <col width="220px" />
+    <col />
+    <thead>
+        <tr>
+            <th colspan="2">
+                <img src="<?php echo $this->getSkinUrl('images/hermes/logo_small.png') ?>" alt="Hermes" title="Hermes" />
+                <?php echo $this->escapeHtml($this->getFieldsetLabel()) ?>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?php echo $this->__('Version'); ?></td>
+            <td><?php echo $this->getVersion(); ?></td>
+        </tr>
+<!--
+        <tr>
+            <td><?php echo $this->__('Find more at'); ?></td>
+            <td><a href="http://www.netresearch.de/magento/hermes">http://www.netresearch.de/magento/hermes/</a></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Documentation'); ?></td>
+            <td><a href="http://www.netresearch.de/fileadmin/user_upload/partner-hermes/downloads/Hermes_Modul_Dokumentation.pdf"><?php echo $this->__('End user documentation'); ?></a></td>
+        </tr>
+-->
+        <tr>
+            <td class=label><?php echo $this->__('Need support? Contact us:'); ?></td>
+            <?php 
+                $mageVersion = Mage::getVersion();
+                if (is_callable('Mage::getEdition')) {
+                    $mageVersion = Mage::getEdition() . ' ' . $mageVersion;
+                }
+                $bodyInfo = array(
+                    '',
+                    '===',
+                    'Magento version:    ' . $mageVersion,
+                    'Hermes app version: ' . $this->getVersion(),
+                    'Shop URI:           ' . Mage::getBaseUrl()
+                );
+            ?>
+            <td><a href="mailto:<?php echo Mage::getModel('hermes/config')->getSupportMail(); ?>?body=<?php echo rawurlencode(implode("\n", $bodyInfo)) ?>"><?php echo Mage::getModel('hermes/config')->getSupportMail() ?></a></td>
+        </tr>
+    </tbody>
+</table>

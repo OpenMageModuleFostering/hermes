@@ -1,0 +1,1379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://hermes_api.service.hlg.de" xmlns:impl="http://hermes_api.service.hlg.de" xmlns:intf="http://hermes_api.service.hlg.de" xmlns:tns2="http://props.hermes_api.service.hlg.de" xmlns:tns3="http://common.hermes_api.service.hlg.de" xmlns:tns4="http://exception.common.service.hlg.de" xmlns:tns5="http://validate.hermes_api.service.hlg.de" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <wsdl:types>
+  <schema targetNamespace="http://hermes_api.service.hlg.de" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns2="http://props.hermes_api.service.hlg.de" xmlns:tns5="http://validate.hermes_api.service.hlg.de" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://validate.hermes_api.service.hlg.de"/>
+   <import namespace="http://props.hermes_api.service.hlg.de"/>
+   <element name="propsGetCollectionOrdersResponse">
+    <complexType>
+     <sequence>
+      <element name="propsGetCollectionOrdersReturn" nillable="true" type="tns2:ListOfPropsCollectionOrders"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderDelete">
+    <complexType>
+     <sequence>
+      <element name="orderNo" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderDeleteResponse">
+    <complexType>
+     <sequence>
+      <element name="propsOrderDeleteReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsCollectionRequest">
+    <complexType>
+     <sequence>
+      <element name="collectionOrder" nillable="true" type="tns2:PropsCollectionOrder"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsCollectionRequestResponse">
+    <complexType>
+     <sequence>
+      <element name="propsCollectionRequestReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderPrintLabelPdf">
+    <complexType>
+     <sequence>
+      <element name="orderNo" nillable="true" type="xsd:string"/>
+      <element name="printPosition" nillable="true" type="xsd:short"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderPrintLabelPdfResponse">
+    <complexType>
+     <sequence>
+      <element name="propsOrderPrintLabelPdfReturn" nillable="true" type="tns2:ShippingLabelPdf"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsCollectionCancel">
+    <complexType>
+     <sequence>
+      <element name="collectionDate" nillable="true" type="xsd:dateTime"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsCollectionCancelResponse">
+    <complexType>
+     <sequence>
+      <element name="propsCollectionCancelReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderSaveAndPrintLabelPdf">
+    <complexType>
+     <sequence>
+      <element name="propsOrder" nillable="true" type="tns2:PropsOrder"/>
+      <element name="printPosition" nillable="true" type="xsd:short"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderSaveAndPrintLabelPdfResponse">
+    <complexType>
+     <sequence>
+      <element name="propsOrderSaveAndPrintLabelPdfReturn" nillable="true" type="tns2:ShippingLabelPdf"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="init">
+    <complexType>
+     <sequence>
+      <element name="arg_0_0" nillable="true" type="xsd:anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="initResponse">
+    <complexType>
+     <sequence/>
+    </complexType>
+   </element>
+   <element name="propsGetPropsOrder">
+    <complexType>
+     <sequence>
+      <element name="orderNo" nillable="true" type="xsd:string"/>
+      <element name="shippingId" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsGetPropsOrderResponse">
+    <complexType>
+     <sequence>
+      <element name="propsGetPropsOrderReturn" nillable="true" type="tns2:PropsOrderLong"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderSave">
+    <complexType>
+     <sequence>
+      <element name="propsOrder" nillable="true" type="tns2:PropsOrder"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderSaveResponse">
+    <complexType>
+     <sequence>
+      <element name="propsOrderSaveReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrdersPrintLabelsPdf">
+    <complexType>
+     <sequence>
+      <element name="requestedOrderNumbers" nillable="true" type="tns2:RequestedOrderNumbers"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrdersPrintLabelsPdfResponse">
+    <complexType>
+     <sequence>
+      <element name="propsOrdersPrintLabelsPdfReturn" nillable="true" type="tns2:MultipleShippingLabelsPdf"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsUserLogin">
+    <complexType>
+     <sequence>
+      <element name="login" nillable="true" type="tns5:HermesLogin"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsUserLoginResponse">
+    <complexType>
+     <sequence>
+      <element name="propsUserLoginReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderPrintLabelJpeg">
+    <complexType>
+     <sequence>
+      <element name="orderNo" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderPrintLabelJpegResponse">
+    <complexType>
+     <sequence>
+      <element name="propsOrderPrintLabelJpegReturn" nillable="true" type="tns2:ShippingLabelJpeg"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsListOfProductsATG">
+    <complexType>
+     <sequence/>
+    </complexType>
+   </element>
+   <element name="propsListOfProductsATGResponse">
+    <complexType>
+     <sequence>
+      <element name="propsListOfProductsATGReturn" nillable="true" type="tns2:ListOfProducts"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsReadShipmentStatus">
+    <complexType>
+     <sequence>
+      <element name="shippingId" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsReadShipmentStatusResponse">
+    <complexType>
+     <sequence>
+      <element name="propsReadShipmentStatusReturn" nillable="true" type="tns2:ShippingStatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsGetPropsOrders">
+    <complexType>
+     <sequence>
+      <element name="searchCriteria" nillable="true" type="tns2:PropsOrderSearchCriteria"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsGetPropsOrdersResponse">
+    <complexType>
+     <sequence>
+      <element name="propsGetPropsOrdersReturn" nillable="true" type="tns2:ListOfPropsOrders"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsProductlnformation">
+    <complexType>
+     <sequence/>
+    </complexType>
+   </element>
+   <element name="propsProductlnformationResponse">
+    <complexType>
+     <sequence>
+      <element name="propsProductlnformationReturn" nillable="true" type="tns2:ListOfProductInfos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsCheckAvailability">
+    <complexType>
+     <sequence/>
+    </complexType>
+   </element>
+   <element name="propsCheckAvailabilityResponse">
+    <complexType>
+     <sequence>
+      <element name="propsCheckAvailabilityReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderSaveAndPrintLabelJpeg">
+    <complexType>
+     <sequence>
+      <element name="propsOrder" nillable="true" type="tns2:PropsOrder"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsOrderSaveAndPrintLabelJpegResponse">
+    <complexType>
+     <sequence>
+      <element name="propsOrderSaveAndPrintLabelJpegReturn" nillable="true" type="tns2:ShippingLabelJpeg"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="destroy">
+    <complexType>
+     <sequence/>
+    </complexType>
+   </element>
+   <element name="destroyResponse">
+    <complexType>
+     <sequence/>
+    </complexType>
+   </element>
+   <element name="propsImportOrders">
+    <complexType>
+     <sequence>
+      <element name="requestedOrders" nillable="true" type="tns2:RequestedOrders"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsImportOrdersResponse">
+    <complexType>
+     <sequence>
+      <element name="propsImportOrdersReturn" nillable="true" type="tns2:ImportResult"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="propsGetCollectionOrders">
+    <complexType>
+     <sequence>
+      <element name="collectionDateFrom" nillable="true" type="xsd:dateTime"/>
+      <element name="collectionDateTo" nillable="true" type="xsd:dateTime"/>
+      <element name="onlyMoreThan2ccm" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema targetNamespace="http://props.hermes_api.service.hlg.de" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns3="http://common.hermes_api.service.hlg.de" xmlns:tns4="http://exception.common.service.hlg.de" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.common.service.hlg.de"/>
+   <import namespace="http://common.hermes_api.service.hlg.de"/>
+   <complexType name="ListOfPropsCollectionOrders">
+    <sequence>
+     <element name="orders" nillable="true" type="tns2:ArrayOfPropsCollectionOrderLong"/>
+    </sequence>
+   </complexType>
+   <complexType name="PropsCollectionOrderLong">
+    <sequence>
+     <element name="moreThan2ccm" nillable="true" type="xsd:string"/>
+     <element name="volume" nillable="true" type="xsd:double"/>
+     <element name="collectionAdress" nillable="true" type="tns3:Address"/>
+     <element name="timeframe" nillable="true" type="xsd:string"/>
+     <element name="collectionType" nillable="true" type="xsd:string"/>
+     <element name="numberOfParcels" nillable="true" type="xsd:int"/>
+     <element name="collectionDate" nillable="true" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPropsCollectionOrderLong">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="PropsCollectionOrderLong" nillable="true" type="tns2:PropsCollectionOrderLong"/>
+    </sequence>
+   </complexType>
+   <complexType name="PropsCollectionOrder">
+    <sequence>
+     <element name="collectionDate" nillable="true" type="xsd:dateTime"/>
+     <element name="numberOfParcelsClass_L" nillable="true" type="xsd:int"/>
+     <element name="numberOfParcelsClass_M" nillable="true" type="xsd:int"/>
+     <element name="numberOfParcelsClass_S" nillable="true" type="xsd:int"/>
+     <element name="numberOfParcelsClass_XL" nillable="true" type="xsd:int"/>
+     <element name="numberOfParcelsClass_XLwithBulkGoods" nillable="true" type="xsd:int"/>
+     <element name="numberOfParcelsClass_XS" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ShippingLabelPdf">
+    <sequence>
+     <element name="pdfData" type="xsd:base64Binary"/>
+     <element name="orderNo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PropsOrder">
+    <sequence>
+     <element name="orderNo" nillable="true" type="xsd:string"/>
+     <element name="receiver" nillable="true" type="tns3:Address"/>
+     <element name="clientReferenceNumber" nillable="true" type="xsd:string"/>
+     <element name="parcelClass" nillable="true" type="xsd:string"/>
+     <element name="amountCashOnDeliveryEurocent" nillable="true" type="xsd:int"/>
+     <element name="includeCashOnDelivery" type="xsd:boolean"/>
+     <element name="withBulkGoods" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="PropsOrderLong">
+    <sequence>
+     <element name="clientReferenceNumber" nillable="true" type="xsd:string"/>
+     <element name="ebayNumber" nillable="true" type="xsd:string"/>
+     <element name="shipper" nillable="true" type="tns3:Address"/>
+     <element name="amountCashOnDeliveryEurocent" nillable="true" type="xsd:int"/>
+     <element name="trackingFlag" nillable="true" type="xsd:short"/>
+     <element name="orderNo" nillable="true" type="xsd:string"/>
+     <element name="shippingId" nillable="true" type="xsd:string"/>
+     <element name="printDate" nillable="true" type="xsd:dateTime"/>
+     <element name="parcelClass" nillable="true" type="xsd:string"/>
+     <element name="status_text" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:short"/>
+     <element name="receiver" nillable="true" type="tns3:Address"/>
+    </sequence>
+   </complexType>
+   <complexType name="RequestedOrderNumbers">
+    <sequence>
+     <element name="orderNumbers" nillable="true" type="tns2:ArrayOf_xsd_nillable_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_xsd_nillable_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="string" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="MultipleShippingLabelsPdf">
+    <sequence>
+     <element name="pdfData" type="xsd:base64Binary"/>
+     <element name="orderRes" nillable="true" type="tns2:ArrayOfOrderResponse"/>
+    </sequence>
+   </complexType>
+   <complexType name="OrderResponse">
+    <sequence>
+     <element name="orderNo" nillable="true" type="xsd:string"/>
+     <element name="exceptionItems" nillable="true" type="tns2:ArrayOf_tns4_nillable_ExceptionItem"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns4_nillable_ExceptionItem">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="ExceptionItem" nillable="true" type="tns4:ExceptionItem"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfOrderResponse">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="OrderResponse" nillable="true" type="tns2:OrderResponse"/>
+    </sequence>
+   </complexType>
+   <complexType name="ShippingLabelJpeg">
+    <sequence>
+     <element name="jpegData" type="xsd:base64Binary"/>
+     <element name="orderNo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListOfProducts">
+    <sequence>
+     <element name="numberOfProducts" type="xsd:int"/>
+     <element name="products" nillable="true" type="tns2:ArrayOfProductWithPrice"/>
+     <element name="dated" nillable="true" type="xsd:dateTime"/>
+     <element name="labelAcceptanceTermsAndConditions" nillable="true" type="xsd:string"/>
+     <element name="labelAcceptanceLiabilityLimit" nillable="true" type="xsd:string"/>
+     <element name="urlTermsAndConditions" nillable="true" type="xsd:string"/>
+     <element name="netPriceCashOnDeliveryEurocent" nillable="true" type="xsd:int"/>
+     <element name="settlementType" nillable="true" type="xsd:string"/>
+     <element name="urlHermesLogogram" nillable="true" type="xsd:string"/>
+     <element name="urlLiabilityInformations" nillable="true" type="xsd:string"/>
+     <element name="urlPackagingGuidelines" nillable="true" type="xsd:string"/>
+     <element name="urlPortalB2C" nillable="true" type="xsd:string"/>
+     <element name="vatInfo" nillable="true" type="xsd:string"/>
+     <element name="serviceChargeList" nillable="true" type="tns2:ArrayOfServiceCharge"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductWithPrice">
+    <sequence>
+     <element name="netPriceEurcent" nillable="true" type="xsd:int"/>
+     <element name="validAt" nillable="true" type="xsd:dateTime"/>
+     <element name="productInfo" nillable="true" type="tns2:ProductInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductInfo">
+    <sequence>
+     <element name="parcelFormat" nillable="true" type="tns2:ParcelFormat"/>
+     <element name="deliveryDestinations" nillable="true" type="tns2:ArrayOfDeliveryDestination"/>
+    </sequence>
+   </complexType>
+   <complexType name="ParcelFormat">
+    <sequence>
+     <element name="parcelClass" nillable="true" type="xsd:string"/>
+     <element name="shortestPlusLongestEdgeCmMax" nillable="true" type="xsd:int"/>
+     <element name="shortestPlusLongestEdgeCmMin" nillable="true" type="xsd:int"/>
+     <element name="thridEdgeCmMax" nillable="true" type="xsd:int"/>
+     <element name="weightMinKg" nillable="true" type="xsd:decimal"/>
+     <element name="weigthMaxKg" nillable="true" type="xsd:decimal"/>
+    </sequence>
+   </complexType>
+   <complexType name="DeliveryDestination">
+    <sequence>
+     <element name="exclusions" nillable="true" type="xsd:string"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfDeliveryDestination">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="DeliveryDestination" nillable="true" type="tns2:DeliveryDestination"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfProductWithPrice">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="ProductWithPrice" nillable="true" type="tns2:ProductWithPrice"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceCharge">
+    <sequence>
+     <element name="displayname" nillable="true" type="xsd:string"/>
+     <element name="amountEurocent" nillable="true" type="xsd:short"/>
+     <element name="currency" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfServiceCharge">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="ServiceCharge" nillable="true" type="tns2:ServiceCharge"/>
+    </sequence>
+   </complexType>
+   <complexType name="ShippingStatus">
+    <sequence>
+     <element name="shippingId" nillable="true" type="xsd:string"/>
+     <element name="statusText" nillable="true" type="xsd:string"/>
+     <element name="statusDateTime" nillable="true" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <complexType name="PropsOrderSearchCriteria">
+    <sequence>
+     <element name="identNo" nillable="true" type="xsd:string"/>
+     <element name="orderNo" nillable="true" type="xsd:string"/>
+     <element name="lastname" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="from" nillable="true" type="xsd:dateTime"/>
+     <element name="to" nillable="true" type="xsd:dateTime"/>
+     <element name="postcode" nillable="true" type="xsd:string"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+     <element name="clientReferenceNumber" nillable="true" type="xsd:string"/>
+     <element name="ebayNumber" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="tns2:ArrayOf_xsd_nillable_short"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_xsd_nillable_short">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="short" nillable="true" type="xsd:short"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListOfPropsOrders">
+    <sequence>
+     <element name="orders" nillable="true" type="tns2:ArrayOfPropsOrderShort"/>
+    </sequence>
+   </complexType>
+   <complexType name="PropsOrderShort">
+    <sequence>
+     <element name="orderNo" nillable="true" type="xsd:string"/>
+     <element name="shippingId" nillable="true" type="xsd:string"/>
+     <element name="creationDate" nillable="true" type="xsd:dateTime"/>
+     <element name="parcelClass" nillable="true" type="xsd:string"/>
+     <element name="status_text" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:short"/>
+     <element name="firstname" nillable="true" type="xsd:string"/>
+     <element name="lastname" nillable="true" type="xsd:string"/>
+     <element name="postcode" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+     <element name="bulkGoodsServiceAmount" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPropsOrderShort">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="PropsOrderShort" nillable="true" type="tns2:PropsOrderShort"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListOfProductInfos">
+    <sequence>
+     <element name="productInfoList" nillable="true" type="tns2:ArrayOfProductInfo"/>
+     <element name="dated" nillable="true" type="xsd:dateTime"/>
+     <element name="urlHermesLogogram" nillable="true" type="xsd:string"/>
+     <element name="urlLiabilityInformations" nillable="true" type="xsd:string"/>
+     <element name="urlPackagingGuidelines" nillable="true" type="xsd:string"/>
+     <element name="urlPortalB2C" nillable="true" type="xsd:string"/>
+     <element name="urlTermsAndConditions" nillable="true" type="xsd:string"/>
+     <element name="serviceChargeList" nillable="true" type="tns2:ArrayOfServiceCharge"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfProductInfo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="ProductInfo" nillable="true" type="tns2:ProductInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="RequestedOrders">
+    <sequence>
+     <element name="propsOrders" nillable="true" type="tns2:ArrayOfPropsOrder"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPropsOrder">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="PropsOrder" nillable="true" type="tns2:PropsOrder"/>
+    </sequence>
+   </complexType>
+   <complexType name="ImportResult">
+    <sequence>
+     <element name="orderResponses" nillable="true" type="tns2:ArrayOfOrderResponse"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://common.hermes_api.service.hlg.de" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Address">
+    <sequence>
+     <element name="addressAdd" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="houseNumber" nillable="true" type="xsd:string"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+     <element name="lastname" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="district" nillable="true" type="xsd:string"/>
+     <element name="postcode" nillable="true" type="xsd:string"/>
+     <element name="street" nillable="true" type="xsd:string"/>
+     <element name="telephoneNumber" nillable="true" type="xsd:string"/>
+     <element name="firstname" nillable="true" type="xsd:string"/>
+     <element name="telephonePrefix" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://exception.common.service.hlg.de" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <complexType name="ServiceException">
+    <sequence>
+     <element name="exceptionItems" nillable="true" type="tns4:ArrayOfExceptionItem"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionItem">
+    <sequence>
+     <element name="errorCode" type="xsd:int"/>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+     <element name="errorType" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfExceptionItem">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="ExceptionItem" nillable="true" type="tns4:ExceptionItem"/>
+    </sequence>
+   </complexType>
+   <element name="ServiceException" nillable="true" type="tns4:ServiceException"/>
+  </schema>
+  <schema targetNamespace="http://validate.hermes_api.service.hlg.de" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <complexType name="HermesLogin">
+    <sequence>
+     <element name="benutzername" nillable="true" type="xsd:string"/>
+     <element name="kennwort" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="propsGetPropsOrdersRequest">
+     <wsdl:part element="impl:propsGetPropsOrders" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderSaveAndPrintLabelPdfRequest">
+     <wsdl:part element="impl:propsOrderSaveAndPrintLabelPdf" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderPrintLabelPdfRequest">
+     <wsdl:part element="impl:propsOrderPrintLabelPdf" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsGetPropsOrderResponse">
+     <wsdl:part element="impl:propsGetPropsOrderResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderDeleteRequest">
+     <wsdl:part element="impl:propsOrderDelete" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsGetCollectionOrdersRequest">
+     <wsdl:part element="impl:propsGetCollectionOrders" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsGetPropsOrderRequest">
+     <wsdl:part element="impl:propsGetPropsOrder" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderSaveAndPrintLabelJpegResponse">
+     <wsdl:part element="impl:propsOrderSaveAndPrintLabelJpegResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsListOfProductsATGResponse">
+     <wsdl:part element="impl:propsListOfProductsATGResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderPrintLabelJpegResponse">
+     <wsdl:part element="impl:propsOrderPrintLabelJpegResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsCollectionRequestRequest">
+     <wsdl:part element="impl:propsCollectionRequest" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsProductlnformationResponse">
+     <wsdl:part element="impl:propsProductlnformationResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsReadShipmentStatusResponse">
+     <wsdl:part element="impl:propsReadShipmentStatusResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsCheckAvailabilityResponse">
+     <wsdl:part element="impl:propsCheckAvailabilityResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsImportOrdersResponse">
+     <wsdl:part element="impl:propsImportOrdersResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="destroyResponse">
+     <wsdl:part element="impl:destroyResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsCheckAvailabilityRequest">
+     <wsdl:part element="impl:propsCheckAvailability" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="initRequest">
+     <wsdl:part element="impl:init" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsUserLoginRequest">
+     <wsdl:part element="impl:propsUserLogin" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsCollectionRequestResponse">
+     <wsdl:part element="impl:propsCollectionRequestResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderPrintLabelJpegRequest">
+     <wsdl:part element="impl:propsOrderPrintLabelJpeg" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderSaveAndPrintLabelJpegRequest">
+     <wsdl:part element="impl:propsOrderSaveAndPrintLabelJpeg" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsListOfProductsATGRequest">
+     <wsdl:part element="impl:propsListOfProductsATG" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsCollectionCancelRequest">
+     <wsdl:part element="impl:propsCollectionCancel" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsCollectionCancelResponse">
+     <wsdl:part element="impl:propsCollectionCancelResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderDeleteResponse">
+     <wsdl:part element="impl:propsOrderDeleteResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsGetCollectionOrdersResponse">
+     <wsdl:part element="impl:propsGetCollectionOrdersResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderPrintLabelPdfResponse">
+     <wsdl:part element="impl:propsOrderPrintLabelPdfResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsUserLoginResponse">
+     <wsdl:part element="impl:propsUserLoginResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsGetPropsOrdersResponse">
+     <wsdl:part element="impl:propsGetPropsOrdersResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderSaveAndPrintLabelPdfResponse">
+     <wsdl:part element="impl:propsOrderSaveAndPrintLabelPdfResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="initResponse">
+     <wsdl:part element="impl:initResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderSaveRequest">
+     <wsdl:part element="impl:propsOrderSave" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrdersPrintLabelsPdfRequest">
+     <wsdl:part element="impl:propsOrdersPrintLabelsPdf" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsImportOrdersRequest">
+     <wsdl:part element="impl:propsImportOrders" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="destroyRequest">
+     <wsdl:part element="impl:destroy" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="ServiceException">
+     <wsdl:part element="tns4:ServiceException" name="fault"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrderSaveResponse">
+     <wsdl:part element="impl:propsOrderSaveResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsOrdersPrintLabelsPdfResponse">
+     <wsdl:part element="impl:propsOrdersPrintLabelsPdfResponse" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsReadShipmentStatusRequest">
+     <wsdl:part element="impl:propsReadShipmentStatus" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:message name="propsProductlnformationRequest">
+     <wsdl:part element="impl:propsProductlnformation" name="parameters"/>
+
+  </wsdl:message>
+
+   <wsdl:portType name="ProPS">
+     <wsdl:operation name="propsGetCollectionOrders">
+       <wsdl:input message="impl:propsGetCollectionOrdersRequest" name="propsGetCollectionOrdersRequest"/>
+
+       <wsdl:output message="impl:propsGetCollectionOrdersResponse" name="propsGetCollectionOrdersResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderDelete">
+       <wsdl:input message="impl:propsOrderDeleteRequest" name="propsOrderDeleteRequest"/>
+
+       <wsdl:output message="impl:propsOrderDeleteResponse" name="propsOrderDeleteResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsCollectionRequest">
+       <wsdl:input message="impl:propsCollectionRequestRequest" name="propsCollectionRequestRequest"/>
+
+       <wsdl:output message="impl:propsCollectionRequestResponse" name="propsCollectionRequestResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderPrintLabelPdf">
+       <wsdl:input message="impl:propsOrderPrintLabelPdfRequest" name="propsOrderPrintLabelPdfRequest"/>
+
+       <wsdl:output message="impl:propsOrderPrintLabelPdfResponse" name="propsOrderPrintLabelPdfResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsCollectionCancel">
+       <wsdl:input message="impl:propsCollectionCancelRequest" name="propsCollectionCancelRequest"/>
+
+       <wsdl:output message="impl:propsCollectionCancelResponse" name="propsCollectionCancelResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderSaveAndPrintLabelPdf">
+       <wsdl:input message="impl:propsOrderSaveAndPrintLabelPdfRequest" name="propsOrderSaveAndPrintLabelPdfRequest"/>
+
+       <wsdl:output message="impl:propsOrderSaveAndPrintLabelPdfResponse" name="propsOrderSaveAndPrintLabelPdfResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="init">
+       <wsdl:input message="impl:initRequest" name="initRequest"/>
+
+       <wsdl:output message="impl:initResponse" name="initResponse"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsGetPropsOrder">
+       <wsdl:input message="impl:propsGetPropsOrderRequest" name="propsGetPropsOrderRequest"/>
+
+       <wsdl:output message="impl:propsGetPropsOrderResponse" name="propsGetPropsOrderResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderSave">
+       <wsdl:input message="impl:propsOrderSaveRequest" name="propsOrderSaveRequest"/>
+
+       <wsdl:output message="impl:propsOrderSaveResponse" name="propsOrderSaveResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrdersPrintLabelsPdf">
+       <wsdl:input message="impl:propsOrdersPrintLabelsPdfRequest" name="propsOrdersPrintLabelsPdfRequest"/>
+
+       <wsdl:output message="impl:propsOrdersPrintLabelsPdfResponse" name="propsOrdersPrintLabelsPdfResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsUserLogin">
+       <wsdl:input message="impl:propsUserLoginRequest" name="propsUserLoginRequest"/>
+
+       <wsdl:output message="impl:propsUserLoginResponse" name="propsUserLoginResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderPrintLabelJpeg">
+       <wsdl:input message="impl:propsOrderPrintLabelJpegRequest" name="propsOrderPrintLabelJpegRequest"/>
+
+       <wsdl:output message="impl:propsOrderPrintLabelJpegResponse" name="propsOrderPrintLabelJpegResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsListOfProductsATG">
+       <wsdl:input message="impl:propsListOfProductsATGRequest" name="propsListOfProductsATGRequest"/>
+
+       <wsdl:output message="impl:propsListOfProductsATGResponse" name="propsListOfProductsATGResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsReadShipmentStatus">
+       <wsdl:input message="impl:propsReadShipmentStatusRequest" name="propsReadShipmentStatusRequest"/>
+
+       <wsdl:output message="impl:propsReadShipmentStatusResponse" name="propsReadShipmentStatusResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsGetPropsOrders">
+       <wsdl:input message="impl:propsGetPropsOrdersRequest" name="propsGetPropsOrdersRequest"/>
+
+       <wsdl:output message="impl:propsGetPropsOrdersResponse" name="propsGetPropsOrdersResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsProductlnformation">
+       <wsdl:input message="impl:propsProductlnformationRequest" name="propsProductlnformationRequest"/>
+
+       <wsdl:output message="impl:propsProductlnformationResponse" name="propsProductlnformationResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsCheckAvailability">
+       <wsdl:input message="impl:propsCheckAvailabilityRequest" name="propsCheckAvailabilityRequest"/>
+
+       <wsdl:output message="impl:propsCheckAvailabilityResponse" name="propsCheckAvailabilityResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderSaveAndPrintLabelJpeg">
+       <wsdl:input message="impl:propsOrderSaveAndPrintLabelJpegRequest" name="propsOrderSaveAndPrintLabelJpegRequest"/>
+
+       <wsdl:output message="impl:propsOrderSaveAndPrintLabelJpegResponse" name="propsOrderSaveAndPrintLabelJpegResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="destroy">
+       <wsdl:input message="impl:destroyRequest" name="destroyRequest"/>
+
+       <wsdl:output message="impl:destroyResponse" name="destroyResponse"/>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsImportOrders">
+       <wsdl:input message="impl:propsImportOrdersRequest" name="propsImportOrdersRequest"/>
+
+       <wsdl:output message="impl:propsImportOrdersResponse" name="propsImportOrdersResponse"/>
+
+       <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+    </wsdl:operation>
+
+  </wsdl:portType>
+
+   <wsdl:binding name="ProPSSoapBinding" type="impl:ProPS">
+ <wsaw:UsingAddressing wsdl:required="false" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"/>
+
+     <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+     <wsdl:operation name="propsGetCollectionOrders">
+       <wsdlsoap:operation soapAction="propsGetCollectionOrders"/>
+
+       <wsdl:input name="propsGetCollectionOrdersRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsGetCollectionOrdersResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderDelete">
+       <wsdlsoap:operation soapAction="propsOrderDelete"/>
+
+       <wsdl:input name="propsOrderDeleteRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsOrderDeleteResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsCollectionRequest">
+       <wsdlsoap:operation soapAction="propsCollectionRequest"/>
+
+       <wsdl:input name="propsCollectionRequestRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsCollectionRequestResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderPrintLabelPdf">
+       <wsdlsoap:operation soapAction="propsOrderPrintLabelPdf"/>
+
+       <wsdl:input name="propsOrderPrintLabelPdfRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsOrderPrintLabelPdfResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsCollectionCancel">
+       <wsdlsoap:operation soapAction="propsCollectionCancel"/>
+
+       <wsdl:input name="propsCollectionCancelRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsCollectionCancelResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderSaveAndPrintLabelPdf">
+       <wsdlsoap:operation soapAction="propsOrderSaveAndPrintLabelPdf"/>
+
+       <wsdl:input name="propsOrderSaveAndPrintLabelPdfRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsOrderSaveAndPrintLabelPdfResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="init">
+       <wsdlsoap:operation soapAction="init"/>
+
+       <wsdl:input name="initRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="initResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsGetPropsOrder">
+       <wsdlsoap:operation soapAction="propsGetPropsOrder"/>
+
+       <wsdl:input name="propsGetPropsOrderRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsGetPropsOrderResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderSave">
+       <wsdlsoap:operation soapAction="propsOrderSave"/>
+
+       <wsdl:input name="propsOrderSaveRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsOrderSaveResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrdersPrintLabelsPdf">
+       <wsdlsoap:operation soapAction="propsOrdersPrintLabelsPdf"/>
+
+       <wsdl:input name="propsOrdersPrintLabelsPdfRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsOrdersPrintLabelsPdfResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsUserLogin">
+       <wsdlsoap:operation soapAction="propsUserLogin"/>
+
+       <wsdl:input name="propsUserLoginRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsUserLoginResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderPrintLabelJpeg">
+       <wsdlsoap:operation soapAction="propsOrderPrintLabelJpeg"/>
+
+       <wsdl:input name="propsOrderPrintLabelJpegRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsOrderPrintLabelJpegResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsListOfProductsATG">
+       <wsdlsoap:operation soapAction="propsListOfProductsATG"/>
+
+       <wsdl:input name="propsListOfProductsATGRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsListOfProductsATGResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsReadShipmentStatus">
+       <wsdlsoap:operation soapAction="propsReadShipmentStatus"/>
+
+       <wsdl:input name="propsReadShipmentStatusRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsReadShipmentStatusResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsGetPropsOrders">
+       <wsdlsoap:operation soapAction="propsGetPropsOrders"/>
+
+       <wsdl:input name="propsGetPropsOrdersRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsGetPropsOrdersResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsProductlnformation">
+       <wsdlsoap:operation soapAction="propsProductlnformation"/>
+
+       <wsdl:input name="propsProductlnformationRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsProductlnformationResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsCheckAvailability">
+       <wsdlsoap:operation soapAction="propsCheckAvailability"/>
+
+       <wsdl:input name="propsCheckAvailabilityRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsCheckAvailabilityResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsOrderSaveAndPrintLabelJpeg">
+       <wsdlsoap:operation soapAction="propsOrderSaveAndPrintLabelJpeg"/>
+
+       <wsdl:input name="propsOrderSaveAndPrintLabelJpegRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsOrderSaveAndPrintLabelJpegResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="destroy">
+       <wsdlsoap:operation soapAction="destroy"/>
+
+       <wsdl:input name="destroyRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="destroyResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+    </wsdl:operation>
+
+     <wsdl:operation name="propsImportOrders">
+       <wsdlsoap:operation soapAction="propsImportOrders"/>
+
+       <wsdl:input name="propsImportOrdersRequest">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:input>
+
+       <wsdl:output name="propsImportOrdersResponse">
+         <wsdlsoap:body use="literal"/>
+
+      </wsdl:output>
+
+       <wsdl:fault name="ServiceException">
+         <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+      </wsdl:fault>
+
+    </wsdl:operation>
+
+  </wsdl:binding>
+
+   <wsdl:service name="ProPSService">
+     <wsdl:port binding="impl:ProPSSoapBinding" name="ProPS">
+       <wsdlsoap:address location="https://sandboxapi.hlg.de/Hermes_API_Web/1_4/services/ProPS"/>
+
+    </wsdl:port>
+
+  </wsdl:service>
+
+</wsdl:definitions>

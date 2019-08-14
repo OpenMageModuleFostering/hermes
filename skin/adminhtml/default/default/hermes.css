@@ -1,0 +1,24 @@
+#hermes-selector legend
+{
+    font-weight: bold;
+    height: auto;
+    line-height: 16px;
+    overflow: visible;
+    visibility: visible;
+    width: auto;
+}
+
+#hermes_logo_small {
+    margin-right: 3px;
+}
+
+#inner-hermes-form table.data dl.parcel-data dt {
+    float: left;
+    width: 75px;
+}
+#inner-hermes-form table.data dl.parcel-data dd {
+    margin-left: 80px;
+}
+div.hermes_status {
+    display: inline-block;
+}
