@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/hermes",
+    "name": "OpenMageModuleFostering\/hermes",
     "type": "magento-module",
     "license": "OSL3",
     "homepage": "",
     "description": "Hermes Extension",
     "authors": [
-    {
-        "name": "Sebastian Ertner",
-        "email": "sebastian.ertner@netresearch.de"
-    }
-],
+        {
+            "name": "Sebastian Ertner",
+            "email": "sebastian.ertner@netresearch.de"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
